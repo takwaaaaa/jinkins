@@ -10,20 +10,32 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo 'Building...'
+                echo ' Building the application...'
+                sh 'echo Build complete!'
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Testing...'
+                echo ' Running tests...'
+                sh 'echo All tests passed!'
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deploying...'
+                echo ' Deploying the application...'
+                sh 'echo Application deployed successfully!'
             }
+        }
+    }
+
+    post {
+        success {
+            echo ' Pipeline executed successfully!'
+        }
+        failure {
+            echo ' Pipeline failed!'
         }
     }
 }
