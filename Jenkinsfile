@@ -1,28 +1,28 @@
 pipeline {
     agent any
+
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/takwaaaaa/jinkins.git'
+                git branch: 'main', url: 'https://github.com/takwaaaaa/jinkins.git'
             }
         }
+
         stage('Build') {
             steps {
-                echo 'Building the project...'
-                sh 'echo Build step executed'
+                echo 'Building...'
             }
         }
+
         stage('Test') {
             steps {
-                echo 'Running tests...'
-                sh 'echo All tests passed successfully!'
+                echo 'Testing...'
             }
         }
-        stage('Archive') {
+
+        stage('Deploy') {
             steps {
-                echo 'Archiving artifacts...'
-                sh 'mkdir -p dist && zip -r dist/app.zip .'
-                archiveArtifacts artifacts: '**/dist/*.zip', allowEmptyArchive: true
+                echo 'Deploying...'
             }
         }
     }
